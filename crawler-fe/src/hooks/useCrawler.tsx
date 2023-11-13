@@ -22,10 +22,13 @@ export const useCrawler = () => {
           headers: {'Content-Type': 'application/json'},
           body
         }).then(resp => resp.json())
+
+        if(response.error) {
+          setError(response.error)
+        }
   
-        if(response) {
-          console.log('response', response)
-          setData(response)
+        if(response.data) {
+          setData(response.data)
         }
     } catch (e) {
       catchedError = e as Error
